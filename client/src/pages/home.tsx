@@ -20,9 +20,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary/20">
+    <div className="min-h-screen bg-transparent text-foreground font-sans overflow-x-hidden selection:bg-primary/20">
+      {/* Grid Pattern Overlay */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
+      
       {/* Navigation */}
-      <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
+      <nav className="fixed w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-2">
@@ -87,11 +90,9 @@ export default function Home() {
               </Badge>
             </motion.div>
             
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+            <motion.h1 variants={fadeIn} className="text-6xl md:text-8xl font-black tracking-tight leading-[1.05] text-black">
               Run your freelance <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-primary/60">
-                business like a pro
-              </span>
+              business like a pro
             </motion.h1>
             
             <motion.p variants={fadeIn} className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -99,8 +100,8 @@ export default function Home() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="h-12 px-8 text-base shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300">Try Dreelio Free</Button>
-              <Button size="lg" variant="outline" className="h-12 px-8 text-base hover:bg-secondary/50">See Features</Button>
+              <Button size="lg" className="h-14 px-10 text-lg font-bold bg-black text-white hover:bg-black/90 rounded-2xl shadow-2xl shadow-black/10 transition-all duration-300">Try Dreelio Free</Button>
+              <Button size="lg" variant="outline" className="h-14 px-10 text-lg font-bold rounded-2xl border-2 border-black/5 bg-white hover:bg-black/5 transition-all">See Features</Button>
             </motion.div>
 
             <motion.div variants={fadeIn} className="pt-16 relative perspective-1000">
