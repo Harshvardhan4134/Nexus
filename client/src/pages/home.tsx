@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Menu, X, MousePointer2, Keyboard, BrainCircuit, Globe, TerminalSquare, Linkedin, Twitter, Workflow, Cpu, Layers, Chrome } from "lucide-react";
+import { ArrowRight, Menu, X, MousePointer2, Keyboard, BrainCircuit, Globe, Linkedin, Twitter, Cpu, Layers, Chrome, Clock, Wand2, ImageIcon, Mic, MessageSquare, MoreHorizontal, Plus, Type, Smile, AtSign, Send, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,18 +110,55 @@ export default function Home() {
               <motion.div 
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-[#1E1E1E] ring-1 ring-white/5 mx-auto w-[400px] md:w-[450px]"
+                className="relative rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-[#131314] ring-1 ring-white/5 mx-auto w-[400px] md:w-[450px] text-left"
               >
                 {/* Simulated Browser Extension Popup Header */}
                 <div className="h-12 bg-[#1E1E1E] border-b border-white/5 flex items-center px-4 gap-3">
-                  <div className="w-6 h-6 bg-white rounded-md flex items-center justify-center text-[12px] text-black font-bold">N</div>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-[12px] text-black font-bold">N</div>
                   <span className="text-sm font-medium text-neutral-200">Nexus Agent</span>
                 </div>
-                <img 
-                  src="/extension-ui.png" 
-                  alt="Nexus Extension Interface" 
-                  className="w-full h-auto object-cover opacity-90"
-                />
+                
+                {/* Extension Body - Gemini Replica */}
+                <div className="p-6 h-[500px] flex flex-col">
+                  <div className="flex justify-between items-center mb-8 text-neutral-400">
+                    <div className="flex items-center gap-3">
+                      <Menu className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                      <span className="text-sm font-medium text-neutral-200">Nexus</span>
+                    </div>
+                    <Clock className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                  </div>
+
+                  <div className="mb-8">
+                    <h2 className="text-4xl font-medium mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">Hello there!</h2>
+                    <h3 className="text-4xl font-medium text-neutral-500">How can I help you today?</h3>
+                  </div>
+
+                  <div className="flex gap-4 mb-8 overflow-x-hidden flex-1">
+                    <div className="bg-[#1E1E1E] p-4 rounded-2xl flex-1 min-w-[150px] max-w-[160px] relative hover:bg-[#2A2A2A] transition-colors cursor-pointer group flex flex-col justify-between">
+                      <p className="text-sm text-neutral-300">Create an image of an intergalactic event</p>
+                      <div className="w-8 h-8 mt-4 self-end rounded-full bg-[#131314] flex items-center justify-center text-neutral-400 group-hover:text-white transition-colors">
+                        <Wand2 className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <div className="bg-[#1E1E1E] p-4 rounded-2xl flex-1 min-w-[150px] max-w-[160px] relative hover:bg-[#2A2A2A] transition-colors cursor-pointer group flex flex-col justify-between">
+                      <p className="text-sm text-neutral-300">Plan a low-carb meal with what's available in my fridge</p>
+                      <div className="w-8 h-8 mt-4 self-end rounded-full bg-[#131314] flex items-center justify-center text-neutral-400 group-hover:text-white transition-colors">
+                        <Wand2 className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-[#1E1E1E] rounded-3xl p-2 py-3 flex items-center px-4 mt-auto">
+                    <input type="text" placeholder="Enter a prompt here" className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-neutral-500 text-sm" />
+                    <div className="flex items-center gap-4 text-neutral-400 ml-2">
+                      <ImageIcon className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                      <Mic className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                    </div>
+                  </div>
+                  <div className="text-center mt-4">
+                    <p className="text-[10px] text-neutral-500">Nexus may display inaccurate info, so double-check its responses.</p>
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
 
@@ -282,8 +320,82 @@ export default function Home() {
                  Trigger workflows directly from your team's conversations. Nexus integrates into your workflows, turning casual requests into automated background tasks.
                </p>
              </div>
-             <div className="relative rounded-2xl border border-white/10 overflow-hidden bg-[#0A0A0A] p-2 flex justify-center">
-               <img src="/feedback.png" alt="Feedback Loop" className="w-full rounded-xl opacity-90 max-w-md mx-auto" />
+             <div className="relative rounded-2xl border border-white/10 overflow-hidden bg-[#1A1D21] shadow-2xl flex justify-center w-full max-w-md mx-auto">
+                <div className="w-full text-left flex flex-col">
+                  {/* Header */}
+                  <div className="h-12 border-b border-white/5 flex items-center px-4 gap-3 text-neutral-400 shrink-0">
+                    <MessageSquare className="w-4 h-4" />
+                    <span className="text-sm font-medium text-neutral-300">Thread in #feedback</span>
+                    <MoreHorizontal className="w-4 h-4 ml-auto" />
+                  </div>
+                  
+                  {/* Body */}
+                  <div className="p-5 space-y-6 flex-1">
+                    <div className="flex gap-3">
+                      <Avatar className="w-8 h-8 rounded-md shrink-0 border border-white/10">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=47" />
+                        <AvatarFallback>L</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-semibold text-sm text-neutral-200">lena</span>
+                          <span className="text-xs text-neutral-500">10:15 AM</span>
+                        </div>
+                        <p className="text-neutral-300 text-sm mt-1 leading-relaxed">Anyone else noticing the iOS app feels slow to open if you haven't used it in a bit?</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <Avatar className="w-8 h-8 rounded-md shrink-0 border border-white/10">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=11" />
+                        <AvatarFallback>D</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-semibold text-sm text-neutral-200">didier</span>
+                          <span className="text-xs text-neutral-500">10:15 AM</span>
+                        </div>
+                        <p className="text-neutral-300 text-sm mt-1 leading-relaxed">Yea, we're still blocking initial render on a full vehicle_state sync every time...</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <Avatar className="w-8 h-8 rounded-md shrink-0 border border-white/10">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=33" />
+                        <AvatarFallback>A</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-semibold text-sm text-neutral-200">andreas</span>
+                          <span className="text-xs text-neutral-500">10:15 AM</span>
+                        </div>
+                        <p className="text-neutral-300 text-sm mt-1 leading-relaxed">Feels like we could render sooner and load the rest in the background. Probably also worth tracking startup timing so we know how often this happens!</p>
+                      </div>
+                    </div>
+
+                    {/* Input area */}
+                    <div className="mt-6 bg-[#222529] border border-white/10 rounded-xl p-3 pb-2 shadow-inner">
+                      <div className="flex items-center gap-2 mb-6">
+                        <span className="bg-[#3A3B5B] text-[#9EA1E5] text-sm px-1.5 py-0.5 rounded font-medium">@Nexus</span>
+                        <span className="text-sm text-neutral-200">send an email to andreas to track startup timing</span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center text-neutral-500">
+                        <div className="flex gap-3">
+                          <Plus className="w-4 h-4 cursor-pointer hover:text-white transition-colors" />
+                          <Type className="w-4 h-4 cursor-pointer hover:text-white transition-colors" />
+                          <Smile className="w-4 h-4 cursor-pointer hover:text-white transition-colors" />
+                          <AtSign className="w-4 h-4 cursor-pointer hover:text-white transition-colors" />
+                        </div>
+                        <div className="bg-[#4834D4] text-white py-1 px-2 rounded-md cursor-pointer hover:bg-[#523DE0] transition-colors flex items-center gap-1 shadow-sm">
+                          <Send className="w-4 h-4 px-0.5" />
+                          <div className="w-[1px] h-4 bg-white/20 mx-0.5"></div>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
              </div>
           </div>
         </section>
