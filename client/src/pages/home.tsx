@@ -7,6 +7,17 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { NexusNavBrand } from "@/components/NexusNavBrand";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
+const EARLY_ACCESS_EMAIL = "harsh@lendlly.in";
 
 const TextReveal = ({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => (
   <motion.div
@@ -22,6 +33,7 @@ const TextReveal = ({ children, className = "", delay = 0 }: { children: React.R
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [earlyAccessOpen, setEarlyAccessOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -73,8 +85,8 @@ export default function Home() {
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" size="sm" className="text-neutral-300 hover:text-white hover:bg-white/10">Log in</Button>
-              <Button size="sm" className="bg-white text-black hover:bg-neutral-200 font-medium">Add to Chrome</Button>
+              <Button type="button" variant="ghost" size="sm" className="text-neutral-300 hover:text-white hover:bg-white/10" onClick={() => setEarlyAccessOpen(true)}>Log in</Button>
+              <Button type="button" size="sm" className="bg-white text-black hover:bg-neutral-200 font-medium" onClick={() => setEarlyAccessOpen(true)}>Add to Chrome</Button>
             </div>
 
             <div className="md:hidden">
@@ -97,8 +109,8 @@ export default function Home() {
               <a href="#features" className="block py-2 text-base font-medium text-neutral-300" onClick={() => setIsMenuOpen(false)}>Capabilities</a>
               <a href="#changelog" className="block py-2 text-base font-medium text-neutral-300" onClick={() => setIsMenuOpen(false)}>Changelog</a>
               <div className="pt-4 flex flex-col gap-2">
-                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">Log in</Button>
-                <Button className="w-full bg-white text-black hover:bg-neutral-200">Add to Chrome</Button>
+                <Button type="button" variant="outline" className="w-full border-white/20 text-white hover:bg-white/10" onClick={() => { setEarlyAccessOpen(true); setIsMenuOpen(false); }}>Log in</Button>
+                <Button type="button" className="w-full bg-white text-black hover:bg-neutral-200" onClick={() => { setEarlyAccessOpen(true); setIsMenuOpen(false); }}>Add to Chrome</Button>
               </div>
             </div>
           </motion.div>
@@ -133,7 +145,7 @@ export default function Home() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="h-14 px-10 text-lg font-medium bg-white text-black hover:bg-neutral-200 rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all duration-300">
+              <Button type="button" size="lg" className="h-14 px-10 text-lg font-medium bg-white text-black hover:bg-neutral-200 rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all duration-300" onClick={() => setEarlyAccessOpen(true)}>
                 Add to Chrome — It's Free
               </Button>
             </motion.div>
@@ -619,7 +631,7 @@ export default function Home() {
                  Install the Nexus Chrome extension today and delegate your most repetitive browser tasks to AI.
                </p>
                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                 <Button size="lg" className="h-14 px-8 text-lg font-medium bg-black text-white hover:bg-neutral-800 rounded-full shadow-xl transition-all">
+                 <Button type="button" size="lg" className="h-14 px-8 text-lg font-medium bg-black text-white hover:bg-neutral-800 rounded-full shadow-xl transition-all" onClick={() => setEarlyAccessOpen(true)}>
                    <Chrome className="w-5 h-5 mr-2" /> Add to Chrome
                  </Button>
                </div>
@@ -676,6 +688,32 @@ export default function Home() {
           </div>
         </footer>
       </main>
+
+      <AlertDialog open={earlyAccessOpen} onOpenChange={setEarlyAccessOpen}>
+        <AlertDialogContent className="border-white/10 bg-[#141414] text-white sm:rounded-xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-white">Early access</AlertDialogTitle>
+            <AlertDialogDescription className="text-neutral-400">
+              For early access, contact{" "}
+              <a
+                href={`mailto:${EARLY_ACCESS_EMAIL}`}
+                className="font-medium text-white underline underline-offset-4 hover:text-neutral-200"
+              >
+                {EARLY_ACCESS_EMAIL}
+              </a>
+              .
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              className="bg-white text-black hover:bg-neutral-200"
+              onClick={() => setEarlyAccessOpen(false)}
+            >
+              Got it
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
