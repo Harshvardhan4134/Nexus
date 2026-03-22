@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Menu, X, Star, Calendar, CreditCard, Layout, BarChart3, Users, Clock, Globe, Zap, Shield, Smartphone, Laptop, Facebook, Linkedin, Instagram, Twitter } from "lucide-react";
+import { ArrowRight, Check, Menu, X, Star, MousePointer2, Keyboard, BrainCircuit, Bot, Globe, Zap, Shield, TerminalSquare, Facebook, Linkedin, Instagram, Twitter, Workflow, Cpu, Layers } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,14 +29,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg shadow-primary/20">D</div>
-              <span className="font-bold text-xl tracking-tight">Dreelio</span>
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg shadow-primary/20">N</div>
+              <span className="font-bold text-xl tracking-tight">Nexus</span>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Features</a>
+              <a href="#how-it-works" className="text-sm font-medium hover:text-primary transition-colors">How it works</a>
+              <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Capabilities</a>
               <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">Pricing</a>
-              <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
               <a href="#blog" className="text-sm font-medium hover:text-primary transition-colors">Blog</a>
             </div>
 
@@ -61,9 +61,9 @@ export default function Home() {
             className="md:hidden bg-background border-b border-border"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
-              <a href="#features" className="block py-2 text-base font-medium" onClick={() => setIsMenuOpen(false)}>Features</a>
+              <a href="#how-it-works" className="block py-2 text-base font-medium" onClick={() => setIsMenuOpen(false)}>How it works</a>
+              <a href="#features" className="block py-2 text-base font-medium" onClick={() => setIsMenuOpen(false)}>Capabilities</a>
               <a href="#pricing" className="block py-2 text-base font-medium" onClick={() => setIsMenuOpen(false)}>Pricing</a>
-              <a href="#testimonials" className="block py-2 text-base font-medium" onClick={() => setIsMenuOpen(false)}>Testimonials</a>
               <div className="pt-4 flex flex-col gap-2">
                 <Button variant="outline" className="w-full">Log in</Button>
                 <Button className="w-full">Get Started</Button>
@@ -86,22 +86,22 @@ export default function Home() {
             
             <motion.div variants={fadeIn} className="flex justify-center">
               <Badge variant="secondary" className="px-4 py-1.5 rounded-full text-sm font-medium border border-border/50 bg-background/50 backdrop-blur-sm shadow-sm hover:bg-secondary/80 transition-colors cursor-pointer group">
-                v2.0 is live — See what's new <ArrowRight className="ml-1 h-3 w-3 inline group-hover:translate-x-1 transition-transform" />
+                v2.0 is live — Now with multi-tab support <ArrowRight className="ml-1 h-3 w-3 inline group-hover:translate-x-1 transition-transform" />
               </Badge>
             </motion.div>
             
             <motion.h1 variants={fadeIn} className="text-6xl md:text-8xl font-black tracking-tight leading-[1.05] text-black">
-              Run your freelance <br className="hidden md:block" />
-              business like a pro
+              You tell it what to do, <br className="hidden md:block" />
+              it gets it done.
             </motion.h1>
             
             <motion.p variants={fadeIn} className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              All-in-one platform for managing clients, projects, and payments without the chaos. From first contract to final invoice, we've got your back.
+              Normal AI tells you what to do. Nexus actually does it for you. An autonomous browser agent that searches, clicks, fills forms, and completes workflows.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="h-14 px-10 text-lg font-bold bg-black text-white hover:bg-black/90 rounded-2xl shadow-2xl shadow-black/10 transition-all duration-300">Try Dreelio Free</Button>
-              <Button size="lg" variant="outline" className="h-14 px-10 text-lg font-bold rounded-2xl border-2 border-black/5 bg-white hover:bg-black/5 transition-all">See Features</Button>
+              <Button size="lg" className="h-14 px-10 text-lg font-bold bg-black text-white hover:bg-black/90 rounded-2xl shadow-2xl shadow-black/10 transition-all duration-300">Try Nexus Free</Button>
+              <Button size="lg" variant="outline" className="h-14 px-10 text-lg font-bold rounded-2xl border-2 border-black/5 bg-white hover:bg-black/5 transition-all">See it in action</Button>
             </motion.div>
 
             <motion.div variants={fadeIn} className="pt-16 relative perspective-1000">
@@ -113,27 +113,26 @@ export default function Home() {
               >
                 <img 
                   src="/hero-dashboard.png" 
-                  alt="Dreelio Dashboard" 
-                  className="w-full h-auto object-cover rounded-xl"
+                  alt="Nexus Automation Dashboard" 
+                  className="w-full h-auto object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </motion.div>
             </motion.div>
 
             <motion.div variants={fadeIn} className="pt-12 pb-8">
-              <p className="text-sm font-medium text-muted-foreground mb-8 uppercase tracking-widest text-[10px]">Trusted by 7,000+ top startups & freelancers</p>
+              <p className="text-sm font-medium text-muted-foreground mb-8 uppercase tracking-widest text-[10px]">Trusted to automate over 1M+ tasks daily</p>
               <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                {/* Simple SVG logos placeholders */}
-                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Globe className="w-6 h-6" /> ACME Corp</div>
-                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Zap className="w-6 h-6" /> Bolt Shift</div>
-                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Shield className="w-6 h-6" /> SecureFlow</div>
-                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Layout className="w-6 h-6" /> Designify</div>
+                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Globe className="w-6 h-6" /> WebFlow</div>
+                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Zap className="w-6 h-6" /> AutoShift</div>
+                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><Shield className="w-6 h-6" /> DataSecure</div>
+                <div className="font-bold text-xl flex items-center gap-2 select-none pointer-events-none"><TerminalSquare className="w-6 h-6" /> Scriptify</div>
               </div>
             </motion.div>
           </motion.div>
         </section>
 
-        {/* Cross Device Section */}
-        <section className="py-32 bg-secondary/30 border-y border-border relative overflow-hidden">
+        {/* How it Works / Cross Device Section */}
+        <section id="how-it-works" className="py-32 bg-secondary/30 border-y border-border relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-background/50 to-transparent pointer-events-none" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -146,30 +145,29 @@ export default function Home() {
               >
                 <div className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 text-sm font-medium shadow-sm">
                   <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-                  Seamless Sync
+                  Autonomous Execution
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">Work from anywhere,<br />stay in sync.</h2>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">Automate anything,<br />on any website.</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Whether you're on the go with our mobile app or deep in work on the desktop, 
-                  your data is always up to date. Switch devices instantly without missing a beat.
+                  Whether it's booking a flight, applying for 100 jobs on LinkedIn, or researching competitors, Nexus navigates complex websites and executes multi-step processes automatically.
                 </p>
                 <ul className="space-y-6 pt-4">
                   <li className="flex items-start gap-4 group">
                     <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                      <Smartphone className="h-6 w-6" />
+                      <Layers className="h-6 w-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-lg">Native iOS & Android Apps</h4>
-                      <p className="text-muted-foreground text-sm mt-1">Full feature parity on mobile devices.</p>
+                      <h4 className="font-semibold text-lg">Handles Complex UI</h4>
+                      <p className="text-muted-foreground text-sm mt-1">Navigates dropdowns, popups, and dynamic React/Vue single-page apps.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 group">
                     <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                      <Laptop className="h-6 w-6" />
+                      <Cpu className="h-6 w-6" />
                     </div>
                      <div>
-                      <h4 className="font-semibold text-lg">Powerful Web Dashboard</h4>
-                      <p className="text-muted-foreground text-sm mt-1">Keyboard shortcuts, dark mode, and more.</p>
+                      <h4 className="font-semibold text-lg">Human-like Interaction</h4>
+                      <p className="text-muted-foreground text-sm mt-1">Mimics human typing speeds, mouse movements, and reading patterns.</p>
                     </div>
                   </li>
                 </ul>
@@ -182,25 +180,25 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <div className="absolute -inset-10 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-3xl opacity-60" />
+                <div className="absolute -inset-10 bg-gradient-to-r from-primary/20 to-neutral-500/20 rounded-full blur-3xl opacity-60" />
                 <div className="relative grid grid-cols-2 gap-6 items-center">
                   <div className="space-y-6 transform translate-y-12">
-                     <img src="/mobile-app.png" alt="Mobile App" className="rounded-3xl shadow-2xl border border-border/50 hover:scale-105 transition-transform duration-500" />
+                     <img src="/mobile-app.png" alt="Task Queue" className="rounded-3xl shadow-2xl border border-border/50 hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0" />
                   </div>
                   <div className="space-y-6">
-                    <img src="/web-app.png" alt="Web App" className="rounded-2xl shadow-2xl border border-border/50 object-cover h-64 w-full hover:scale-105 transition-transform duration-500" />
+                    <img src="/web-app.png" alt="Execution Log" className="rounded-2xl shadow-2xl border border-border/50 object-cover h-64 w-full hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0" />
                     <div className="bg-card p-6 rounded-2xl border border-border shadow-xl">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="h-2 w-2 rounded-full bg-green-500" />
-                        <span className="font-medium text-sm">System Status: Operational</span>
+                        <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="font-medium text-sm">Agent Status: Active</span>
                       </div>
                       <div className="space-y-2">
                         <div className="h-2 bg-muted rounded-full w-full overflow-hidden">
                           <div className="h-full bg-primary w-3/4 rounded-full" />
                         </div>
                         <div className="flex justify-between text-xs text-muted-foreground">
-                          <span>Syncing...</span>
-                          <span>98%</span>
+                          <span>Filling application form...</span>
+                          <span>75%</span>
                         </div>
                       </div>
                     </div>
@@ -214,9 +212,9 @@ export default function Home() {
         {/* Features Section */}
         <section id="features" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">Built for freelancers, <br />powered by simplicity</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">Built for autonomy, <br />powered by intelligence</h2>
             <p className="text-xl text-muted-foreground">
-              Everything you need to manage your creative business, minus the fluff.
+              Nexus doesn't just read the internet; it interacts with it exactly like you do.
             </p>
           </div>
 
@@ -224,14 +222,14 @@ export default function Home() {
             <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group">
               <CardHeader>
                 <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <Layout className="w-7 h-7" />
+                  <MousePointer2 className="w-7 h-7" />
                 </div>
-                <CardTitle className="text-xl">Project Management</CardTitle>
-                <CardDescription>Keep every project moving forward.</CardDescription>
+                <CardTitle className="text-xl">Web Navigation</CardTitle>
+                <CardDescription>Clicks, scrolls, and explores.</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">
-                  Plan, assign, and deliver your work - all in one place. With smart task tracking, deadlines, and real-time progress.
+                  Nexus uses visual recognition to find and click buttons, links, and menus, even if the underlying website code changes completely.
                 </p>
               </CardContent>
             </Card>
@@ -239,14 +237,14 @@ export default function Home() {
             <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group">
               <CardHeader>
                 <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <CreditCard className="w-7 h-7" />
+                  <Keyboard className="w-7 h-7" />
                 </div>
-                <CardTitle className="text-xl">Financial Tracking</CardTitle>
-                <CardDescription>Track income, get paid, stress less.</CardDescription>
+                <CardTitle className="text-xl">Form Filling</CardTitle>
+                <CardDescription>Data entry on autopilot.</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">
-                  Create branded invoices, log expenses, and keep tabs on your earnings. Automated and tax-friendly.
+                  Provide Nexus with your details or a spreadsheet of data, and it will systematically fill out complex, multi-page forms with perfect accuracy.
                 </p>
               </CardContent>
             </Card>
@@ -254,14 +252,14 @@ export default function Home() {
             <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group">
               <CardHeader>
                 <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <Users className="w-7 h-7" />
+                  <BrainCircuit className="w-7 h-7" />
                 </div>
-                <CardTitle className="text-xl">Client CRM</CardTitle>
-                <CardDescription>Manage relationships like a pro.</CardDescription>
+                <CardTitle className="text-xl">Intelligent Decisions</CardTitle>
+                <CardDescription>Adapts to errors and changes.</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">
-                  Keep all client details, contracts, and communication in one secure place. Never lose track of a lead again.
+                  If a website throws an error or a product is out of stock, Nexus doesn't crash. It reads the screen, assesses options, and pivots its strategy.
                 </p>
               </CardContent>
             </Card>
@@ -269,8 +267,8 @@ export default function Home() {
           
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
              <div className="bg-secondary/30 rounded-3xl p-10 border border-border hover:border-primary/30 transition-colors duration-300">
-                <h3 className="text-2xl font-bold mb-4">Integrates seamlessly</h3>
-                <p className="text-muted-foreground mb-8">Connect with the tools you already use every day.</p>
+                <h3 className="text-2xl font-bold mb-4">Connects with everything</h3>
+                <p className="text-muted-foreground mb-8">Trigger browser workflows from your existing stack via API or Zapier.</p>
                 <div className="grid grid-cols-4 gap-4">
                   {[1,2,3,4,5,6,7,8].map((i) => (
                     <div key={i} className="aspect-square bg-background rounded-xl border border-border flex items-center justify-center shadow-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
@@ -281,23 +279,23 @@ export default function Home() {
              </div>
              <div className="bg-primary text-primary-foreground rounded-3xl p-10 border border-border relative overflow-hidden group">
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-4">Customizable Workflows</h3>
+                  <h3 className="text-2xl font-bold mb-4">Record and Replay</h3>
                   <p className="text-primary-foreground/80 mb-8 max-w-md leading-relaxed">
-                    Adapt Dreelio to your specific needs. From Kanban boards to List views, work the way you want.
+                    Don't want to explain it? Just record yourself doing the task once. Nexus will learn the steps and repeat them infinitely at scale.
                   </p>
-                  <Button variant="secondary" className="font-semibold shadow-lg">Explore Features</Button>
+                  <Button variant="secondary" className="font-semibold shadow-lg">View Capabilities</Button>
                 </div>
                 <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-1/4 translate-y-1/4 group-hover:translate-x-1/3 group-hover:translate-y-1/3 transition-transform duration-700">
-                  <Layout className="w-80 h-80" />
+                  <Workflow className="w-80 h-80" />
                 </div>
              </div>
           </div>
         </section>
 
         {/* Testimonials */}
-        <section id="testimonials" className="py-24 bg-muted/20 border-y border-border overflow-hidden">
+        <section className="py-24 bg-muted/20 border-y border-border overflow-hidden">
           <div className="text-center max-w-3xl mx-auto mb-16 px-4">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Loved by designers,<br />developers, and creators.</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Loved by productivity hackers<br />and busy professionals.</h2>
           </div>
           
           <div className="relative w-full">
@@ -310,16 +308,16 @@ export default function Home() {
                   <CardContent className="pt-8 px-8 pb-8">
                     <div className="flex items-center gap-4 mb-4">
                       <Avatar>
-                        <AvatarImage src={`https://i.pravatar.cc/150?img=${(i % 5) + 10}`} />
-                        <AvatarFallback>JD</AvatarFallback>
+                        <AvatarImage src={`https://i.pravatar.cc/150?img=${(i % 5) + 30}`} />
+                        <AvatarFallback>U</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-bold text-sm">Sarah Jenkins</p>
-                        <p className="text-xs text-muted-foreground">Product Designer @ Stripe</p>
+                        <p className="font-bold text-sm">Alex Chen</p>
+                        <p className="text-xs text-muted-foreground">Operations @ GrowthCo</p>
                       </div>
                     </div>
-                    <p className="text-muted-foreground italic leading-relaxed">"Dreelio has completely transformed how I manage my freelance business. It's clean, fast, and actually enjoyable to use."</p>
-                    <div className="flex gap-1 text-yellow-500 mt-6">
+                    <p className="text-muted-foreground italic leading-relaxed">"Nexus literally does the work of three interns. I told it to scrape competitive pricing daily from 5 sites and format it in Google Sheets. Flawless execution."</p>
+                    <div className="flex gap-1 text-black mt-6">
                       <Star className="w-4 h-4 fill-current" />
                       <Star className="w-4 h-4 fill-current" />
                       <Star className="w-4 h-4 fill-current" />
@@ -336,26 +334,26 @@ export default function Home() {
         {/* Pricing */}
         <section id="pricing" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Simple plans for <br />serious work</h2>
-            <p className="text-xl text-muted-foreground">Start for free, upgrade when you need more power.</p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Scale your output,<br />not your headcount</h2>
+            <p className="text-xl text-muted-foreground">Pay for what Nexus actually accomplishes for you.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             {/* Free Plan */}
             <Card className="border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="pb-8">
-                <CardTitle className="text-2xl font-bold">Basic</CardTitle>
+                <CardTitle className="text-2xl font-bold">Starter</CardTitle>
                 <div className="mt-4 flex items-baseline text-5xl font-extrabold tracking-tight">
                   Free
                 </div>
-                <CardDescription className="mt-2 text-base">For solo use with light needs.</CardDescription>
+                <CardDescription className="mt-2 text-base">Perfect for personal automation.</CardDescription>
               </CardHeader>
               <CardContent className="pb-8">
                 <ul className="space-y-4 text-sm font-medium">
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Unlimited projects</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> 3 active clients</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Basic time tracking</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Mobile app access</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> 50 automated tasks / mo</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> 1 concurrent agent</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Standard execution speed</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Web dashboard access</li>
                 </ul>
               </CardContent>
               <CardFooter>
@@ -365,22 +363,22 @@ export default function Home() {
 
             {/* Pro Plan */}
             <Card className="border-primary shadow-2xl bg-primary/5 relative overflow-hidden transform md:-translate-y-6 z-10">
-              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-purple-600" />
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-black to-neutral-600" />
               <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
               <CardHeader className="pb-8">
-                <CardTitle className="text-2xl font-bold text-primary">Premium</CardTitle>
+                <CardTitle className="text-2xl font-bold text-primary">Pro Automator</CardTitle>
                 <div className="mt-4 flex items-baseline text-5xl font-extrabold tracking-tight">
-                  $19<span className="text-lg font-normal text-muted-foreground ml-1">/mo</span>
+                  $49<span className="text-lg font-normal text-muted-foreground ml-1">/mo</span>
                 </div>
-                <CardDescription className="mt-2 text-base text-primary/80">Everything you need to grow.</CardDescription>
+                <CardDescription className="mt-2 text-base text-primary/80">For power users and small teams.</CardDescription>
               </CardHeader>
               <CardContent className="pb-8">
                 <ul className="space-y-4 text-sm font-medium">
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Unlimited clients</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Advanced invoicing</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Expense tracking</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Client portal</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Priority support</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> 1,000 automated tasks / mo</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> 5 concurrent agents</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Priority execution speed</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Zapier & API access</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Vision-based error recovery</li>
                 </ul>
               </CardContent>
               <CardFooter>
@@ -391,18 +389,18 @@ export default function Home() {
             {/* Enterprise Plan */}
             <Card className="border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="pb-8">
-                <CardTitle className="text-2xl font-bold">Enterprise</CardTitle>
+                <CardTitle className="text-2xl font-bold">Scale</CardTitle>
                 <div className="mt-4 flex items-baseline text-5xl font-extrabold tracking-tight">
                   Custom
                 </div>
-                <CardDescription className="mt-2 text-base">For large teams and agencies.</CardDescription>
+                <CardDescription className="mt-2 text-base">High-volume enterprise workflows.</CardDescription>
               </CardHeader>
               <CardContent className="pb-8">
                 <ul className="space-y-4 text-sm font-medium">
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Everything in Premium</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Custom integrations</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Dedicated account manager</li>
-                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> SLA & Security</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Unlimited tasks</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> 100+ concurrent agents</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> Dedicated IP proxies</li>
+                  <li className="flex items-center"><Check className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> SLA & 24/7 Support</li>
                 </ul>
               </CardContent>
               <CardFooter>
@@ -417,8 +415,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight mb-4">Ideas to level-up your <br />freelance game</h2>
-                <p className="text-muted-foreground">Latest articles, guides, and tips.</p>
+                <h2 className="text-3xl font-bold tracking-tight mb-4">Learn to automate <br />your digital life</h2>
+                <p className="text-muted-foreground">Guides, use-cases, and prompt engineering tips.</p>
               </div>
               <Button variant="ghost" className="hidden md:flex group">View all posts <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" /></Button>
             </div>
@@ -426,25 +424,25 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="group cursor-pointer">
                 <div className="aspect-[16/9] bg-muted rounded-2xl mb-6 overflow-hidden border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
-                  <img src="/blog-strategy.png" alt="Blog Strategy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src="/blog-strategy.png" alt="Blog Strategy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" />
                 </div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Badge variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors">Strategy</Badge>
+                  <Badge variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors">Use Case</Badge>
                   <span className="text-xs text-muted-foreground">• 5 min read</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">How to start a 100k creative agency in 2026</h3>
-                <p className="text-muted-foreground leading-relaxed">Learn how to kickstart your journey into agency ownership with our comprehensive guide covering everything from pricing to hiring.</p>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">How to automate your entire job search</h3>
+                <p className="text-muted-foreground leading-relaxed">Learn how to configure Nexus to find relevant roles, answer custom questionnaires, and submit 100+ tailored applications daily.</p>
               </div>
               <div className="group cursor-pointer">
                 <div className="aspect-[16/9] bg-muted rounded-2xl mb-6 overflow-hidden border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
-                  <img src="/blog-tools.png" alt="Blog Tools" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src="/blog-tools.png" alt="Blog Tools" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" />
                 </div>
                 <div className="flex items-center gap-2 mb-3">
                   <Badge variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors">Productivity</Badge>
                   <span className="text-xs text-muted-foreground">• 3 min read</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Top 10 digital tools for freelancers</h3>
-                <p className="text-muted-foreground leading-relaxed">The essential tech stack you need to manage your business efficiently, automate tasks, and reclaim your time.</p>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">10 boring tasks you should delegate to AI today</h3>
+                <p className="text-muted-foreground leading-relaxed">From booking doctor appointments to scraping competitor prices, discover the most popular browser workflows our users automate.</p>
               </div>
             </div>
             
@@ -456,16 +454,16 @@ export default function Home() {
 
         {/* CTA Footer */}
         <section className="py-24 px-4 text-center">
-          <div className="max-w-4xl mx-auto bg-primary text-primary-foreground rounded-[2rem] p-12 md:p-24 relative overflow-hidden shadow-2xl">
+          <div className="max-w-4xl mx-auto bg-black text-white rounded-[2rem] p-12 md:p-24 relative overflow-hidden shadow-2xl border border-neutral-800">
              <div className="relative z-10 space-y-8">
-               <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Ready to get organized?</h2>
-               <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed">
-                 Join 7,000+ freelancers who trust Dreelio to run their business without the headaches.
+               <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Ready to reclaim your time?</h2>
+               <p className="text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+                 Join thousands of users who trust Nexus to handle their repetitive internet tasks securely and autonomously.
                </p>
                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                 <Button size="lg" variant="secondary" className="h-14 px-8 text-lg font-bold text-primary shadow-lg hover:shadow-xl transition-shadow">Start your free trial</Button>
+                 <Button size="lg" className="h-14 px-8 text-lg font-bold bg-white text-black hover:bg-neutral-200 shadow-lg hover:shadow-xl transition-all">Start your free trial</Button>
                </div>
-               <p className="text-sm opacity-60">No credit card required. Cancel anytime.</p>
+               <p className="text-sm opacity-60 text-neutral-400">No credit card required. Cancel anytime.</p>
              </div>
              
              {/* Abstract Shapes */}
@@ -479,11 +477,11 @@ export default function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             <div className="col-span-2 md:col-span-1 pr-8">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold shadow-lg shadow-primary/20">D</div>
-                <span className="font-bold text-xl tracking-tight">Dreelio</span>
+                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold shadow-lg">N</div>
+                <span className="font-bold text-xl tracking-tight">Nexus</span>
               </div>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed mb-6">
-                The all-in-one platform for freelancers to manage clients, projects, and payments. Built with ❤️ for creators.
+                The autonomous AI browser agent. You tell it what to do, it gets it done.
               </p>
               <div className="flex gap-4">
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></a>
@@ -494,21 +492,21 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-6 text-foreground">Product</h4>
               <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Capabilities</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Download App</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Extension</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Changelog</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Integrations</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">API & Zapier</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-6 text-foreground">Resources</h4>
               <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Prompt Library</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Community</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Status</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">System Status</a></li>
               </ul>
             </div>
             <div>
@@ -516,14 +514,14 @@ export default function Home() {
               <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Cookie Policy</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Data Security</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Acceptable Use</a></li>
               </ul>
             </div>
           </div>
           <Separator className="mb-8" />
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-            <p>© 2026 Dreelio Inc. All rights reserved.</p>
+            <p>© 2026 Nexus AI Inc. All rights reserved.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
                <span className="flex items-center gap-2"><Globe className="w-4 h-4" /> English (US)</span>
             </div>
