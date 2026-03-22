@@ -1,14 +1,47 @@
-import { motion } from "framer-motion";
-import { ArrowRight, Menu, X, MousePointer2, Keyboard, BrainCircuit, Globe, Linkedin, Twitter, Cpu, Layers, Chrome, Clock, Wand2, ImageIcon, Mic, MessageSquare, MoreHorizontal, Plus, Type, Smile, AtSign, Send, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Menu, X, MousePointer2, Keyboard, BrainCircuit, Globe, Linkedin, Twitter, Cpu, Layers, Chrome, Clock, Wand2, ImageIcon, Mic, MessageSquare, MoreHorizontal, Plus, Type, Smile, AtSign, Send, ChevronDown, Zap, Sparkles, Loader2, Check } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+const TextReveal = ({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 25 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [inputText, setInputText] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    const text = "Order a custom cake from Baker's Pride";
+    let i = 0;
+    const startTimeout = setTimeout(() => {
+      const timer = setInterval(() => {
+        if (i <= text.length) {
+          setInputText(text.slice(0, i));
+          i++;
+        } else {
+          clearInterval(timer);
+          setTimeout(() => setIsProcessing(true), 600);
+        }
+      }, 50);
+      return () => clearInterval(timer);
+    }, 1500);
+    
+    return () => clearTimeout(startTimeout);
+  }, []);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -135,25 +168,90 @@ export default function Home() {
 
                   <div className="flex gap-4 mb-8 overflow-x-hidden flex-1">
                     <div className="bg-[#1E1E1E] p-4 rounded-2xl flex-1 min-w-[150px] max-w-[160px] relative hover:bg-[#2A2A2A] transition-colors cursor-pointer group flex flex-col justify-between">
-                      <p className="text-sm text-neutral-300">Create an image of an intergalactic event</p>
+                      <p className="text-sm text-neutral-300">Apply for a job at Stripe as a Frontend Engineer</p>
                       <div className="w-8 h-8 mt-4 self-end rounded-full bg-[#131314] flex items-center justify-center text-neutral-400 group-hover:text-white transition-colors">
                         <Wand2 className="w-4 h-4" />
                       </div>
                     </div>
                     <div className="bg-[#1E1E1E] p-4 rounded-2xl flex-1 min-w-[150px] max-w-[160px] relative hover:bg-[#2A2A2A] transition-colors cursor-pointer group flex flex-col justify-between">
-                      <p className="text-sm text-neutral-300">Plan a low-carb meal with what's available in my fridge</p>
+                      <p className="text-sm text-neutral-300">Order a custom cake from Baker's Pride</p>
                       <div className="w-8 h-8 mt-4 self-end rounded-full bg-[#131314] flex items-center justify-center text-neutral-400 group-hover:text-white transition-colors">
                         <Wand2 className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-[#1E1E1E] rounded-3xl p-2 py-3 flex items-center px-4 mt-auto">
-                    <input type="text" placeholder="Enter a prompt here" className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-neutral-500 text-sm" />
-                    <div className="flex items-center gap-4 text-neutral-400 ml-2">
-                      <ImageIcon className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
-                      <Mic className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                  <div className={`rounded-3xl p-2 py-3 flex flex-col px-4 mt-auto transition-all duration-500 ${isProcessing ? 'bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-purple-500/20' : 'bg-[#1E1E1E] border border-transparent'}`}>
+                    <div className="flex items-center">
+                      <input 
+                        type="text" 
+                        value={inputText}
+                        readOnly
+                        placeholder="Enter a prompt here" 
+                        className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-neutral-500 text-sm" 
+                      />
+                      <div className="flex items-center gap-4 text-neutral-400 ml-2">
+                        {isProcessing ? (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="flex items-center justify-center w-5 h-5"
+                          >
+                            <Sparkles className="w-4 h-4 text-purple-400 animate-pulse" />
+                          </motion.div>
+                        ) : (
+                          <div className="flex gap-4">
+                            <ImageIcon className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                            <Mic className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                          </div>
+                        )}
+                      </div>
                     </div>
+                    {/* Processing State Subtext */}
+                    <AnimatePresence>
+                      {isProcessing && (
+                        <motion.div 
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
+                          className="text-xs text-purple-300 flex flex-col gap-2 overflow-hidden w-full"
+                        >
+                          <div className="flex items-center gap-2">
+                             <Loader2 className="w-3 h-3 animate-spin" />
+                             Navigating to bakerspride.com...
+                          </div>
+                          
+                          <motion.div 
+                             initial={{ opacity: 0 }} 
+                             animate={{ opacity: 1 }} 
+                             transition={{ delay: 1.5 }}
+                             className="flex items-center gap-2 pl-5 text-neutral-400"
+                          >
+                             <Check className="w-3 h-3 text-green-400" />
+                             Selecting "Custom Cakes" category
+                          </motion.div>
+                          
+                          <motion.div 
+                             initial={{ opacity: 0 }} 
+                             animate={{ opacity: 1 }} 
+                             transition={{ delay: 3 }}
+                             className="flex items-center gap-2 pl-5 text-neutral-400"
+                          >
+                             <Check className="w-3 h-3 text-green-400" />
+                             Filling delivery details
+                          </motion.div>
+                          
+                          <motion.div 
+                             initial={{ opacity: 0 }} 
+                             animate={{ opacity: 1 }} 
+                             transition={{ delay: 4.5 }}
+                             className="flex items-center gap-2 pl-5 text-neutral-400"
+                          >
+                             <Loader2 className="w-3 h-3 animate-spin" />
+                             Reviewing order summary
+                          </motion.div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                   <div className="text-center mt-4">
                     <p className="text-[10px] text-neutral-500">Nexus may display inaccurate info, so double-check its responses.</p>
@@ -165,18 +263,39 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Core Architecture Section (replacing features with species images) */}
-        <section id="how-it-works" className="py-32 border-y border-white/5 relative overflow-hidden bg-black/40">
+        {/* Core Architecture Section (replacing species image with custom UI) */}
+        <section id="how-it-works" className="py-32 border-y border-white/5 relative overflow-hidden bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 text-white">Purpose-built for modern workflows</h2>
-              <p className="text-xl text-neutral-400">
-                Nexus sets a new standard for how you interact with the web. It's not just a wrapper; it's an intelligent runtime executing directly inside your browser.
-              </p>
-            </div>
+            <TextReveal className="max-w-4xl mb-24">
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 text-white leading-tight">
+                A new species of browser extension. <span className="text-neutral-500">Purpose-built for modern teams with AI workflows at its core, Nexus sets a new standard for web automation.</span>
+              </h2>
+            </TextReveal>
             
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0A0A0A] p-2 flex justify-center">
-               <img src="/species.png" alt="Architecture" className="w-full max-w-5xl rounded-xl opacity-90" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <TextReveal delay={0.1}>
+                <div className="h-64 rounded-2xl bg-[#0F0F0F] border border-white/5 flex items-center justify-center mb-6 relative overflow-hidden group">
+                   <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                   <Layers className="w-20 h-20 text-neutral-800 group-hover:text-neutral-600 transition-colors duration-500" strokeWidth={1} />
+                </div>
+                <h4 className="text-sm font-medium text-white mb-2">Built for purpose</h4>
+              </TextReveal>
+              
+              <TextReveal delay={0.2}>
+                <div className="h-64 rounded-2xl bg-[#0F0F0F] border border-white/5 flex items-center justify-center mb-6 relative overflow-hidden group">
+                   <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                   <Cpu className="w-20 h-20 text-neutral-800 group-hover:text-neutral-600 transition-colors duration-500" strokeWidth={1} />
+                </div>
+                <h4 className="text-sm font-medium text-white mb-2">Powered by AI agents</h4>
+              </TextReveal>
+
+              <TextReveal delay={0.3}>
+                <div className="h-64 rounded-2xl bg-[#0F0F0F] border border-white/5 flex items-center justify-center mb-6 relative overflow-hidden group">
+                   <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                   <Zap className="w-20 h-20 text-neutral-800 group-hover:text-neutral-600 transition-colors duration-500" strokeWidth={1} />
+                </div>
+                <h4 className="text-sm font-medium text-white mb-2">Designed for speed</h4>
+              </TextReveal>
             </div>
           </div>
         </section>
@@ -184,13 +303,7 @@ export default function Home() {
         {/* Agent/Execution Section */}
         <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
+            <TextReveal className="space-y-8">
               <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-neutral-300">
                 <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2 animate-pulse"></span>
                 Local Execution
@@ -219,7 +332,7 @@ export default function Home() {
                   </div>
                 </li>
               </ul>
-            </motion.div>
+            </TextReveal>
             
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
@@ -238,58 +351,64 @@ export default function Home() {
 
         {/* Features Capabilities Grid */}
         <section id="features" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+          <TextReveal className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 text-white">Interactive autonomy</h2>
             <p className="text-xl text-neutral-400">
               Just open the extension, type your command, and watch it take over the tab.
             </p>
-          </div>
+          </TextReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-[#0A0A0A] border-white/10 hover:border-white/30 transition-all duration-300 group">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 border border-white/10">
-                  <MousePointer2 className="w-6 h-6" />
-                </div>
-                <CardTitle className="text-xl font-medium text-white">Precision Clicking</CardTitle>
-                <CardDescription className="text-neutral-400">Navigates dropdowns and dynamic menus.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-neutral-400 leading-relaxed text-sm">
-                  Nexus maps the entire visual interface and uses coordinate-based clicking to interact with elements exactly like a human would.
-                </p>
-              </CardContent>
-            </Card>
+            <TextReveal delay={0.1}>
+              <Card className="bg-[#0A0A0A] border-white/10 hover:border-white/30 transition-all duration-300 group h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 border border-white/10">
+                    <MousePointer2 className="w-6 h-6" />
+                  </div>
+                  <CardTitle className="text-xl font-medium text-white">Precision Clicking</CardTitle>
+                  <CardDescription className="text-neutral-400">Navigates dropdowns and dynamic menus.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-neutral-400 leading-relaxed text-sm">
+                    Nexus maps the entire visual interface and uses coordinate-based clicking to interact with elements exactly like a human would.
+                  </p>
+                </CardContent>
+              </Card>
+            </TextReveal>
 
-            <Card className="bg-[#0A0A0A] border-white/10 hover:border-white/30 transition-all duration-300 group">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 border border-white/10">
-                  <Keyboard className="w-6 h-6" />
-                </div>
-                <CardTitle className="text-xl font-medium text-white">Smart Form Filling</CardTitle>
-                <CardDescription className="text-neutral-400">Reads inputs, writes contextually.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-neutral-400 leading-relaxed text-sm">
-                  Whether applying for jobs or filling CRM data, it understands what each field requires and drafts perfect responses on the fly.
-                </p>
-              </CardContent>
-            </Card>
+            <TextReveal delay={0.2}>
+              <Card className="bg-[#0A0A0A] border-white/10 hover:border-white/30 transition-all duration-300 group h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 border border-white/10">
+                    <Keyboard className="w-6 h-6" />
+                  </div>
+                  <CardTitle className="text-xl font-medium text-white">Smart Form Filling</CardTitle>
+                  <CardDescription className="text-neutral-400">Reads inputs, writes contextually.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-neutral-400 leading-relaxed text-sm">
+                    Whether applying for jobs or filling CRM data, it understands what each field requires and drafts perfect responses on the fly.
+                  </p>
+                </CardContent>
+              </Card>
+            </TextReveal>
 
-            <Card className="bg-[#0A0A0A] border-white/10 hover:border-white/30 transition-all duration-300 group">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 border border-white/10">
-                  <BrainCircuit className="w-6 h-6" />
-                </div>
-                <CardTitle className="text-xl font-medium text-white">Self-Healing</CardTitle>
-                <CardDescription className="text-neutral-400">Adapts to UI changes automatically.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-neutral-400 leading-relaxed text-sm">
-                  If a website updates its design, Nexus doesn't break. It visually analyzes the new layout and finds the new path to success.
-                </p>
-              </CardContent>
-            </Card>
+            <TextReveal delay={0.3}>
+              <Card className="bg-[#0A0A0A] border-white/10 hover:border-white/30 transition-all duration-300 group h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 border border-white/10">
+                    <BrainCircuit className="w-6 h-6" />
+                  </div>
+                  <CardTitle className="text-xl font-medium text-white">Self-Healing</CardTitle>
+                  <CardDescription className="text-neutral-400">Adapts to UI changes automatically.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-neutral-400 leading-relaxed text-sm">
+                    If a website updates its design, Nexus doesn't break. It visually analyzes the new layout and finds the new path to success.
+                  </p>
+                </CardContent>
+              </Card>
+            </TextReveal>
           </div>
         </section>
 
@@ -297,16 +416,22 @@ export default function Home() {
         <section className="py-24 border-y border-white/5 bg-black/40">
            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div className="order-2 md:order-1 relative rounded-2xl border border-white/10 overflow-hidden p-2 bg-[#0A0A0A]">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="order-2 md:order-1 relative rounded-2xl border border-white/10 overflow-hidden p-2 bg-[#0A0A0A]"
+                >
                   <img src="/dashboard-pulse.png" alt="Analytics" className="w-full rounded-xl opacity-90" />
-                </div>
-                <div className="order-1 md:order-2 space-y-6">
+                </motion.div>
+                <TextReveal className="order-1 md:order-2 space-y-6">
                   <h3 className="text-3xl md:text-4xl font-medium tracking-tight text-white">Monitor all executions</h3>
                   <p className="text-lg text-neutral-400 leading-relaxed">
                     While Nexus runs locally in your extension, you can track its success rate, cycle times, and execution logs from your central hub. Perfect for managing fleets of automated tasks.
                   </p>
                   <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full h-12 px-6">Explore Analytics</Button>
-                </div>
+                </TextReveal>
              </div>
            </div>
         </section>
@@ -314,13 +439,19 @@ export default function Home() {
         {/* Feedback Section */}
         <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-             <div className="space-y-6">
+             <TextReveal className="space-y-6">
                <h3 className="text-3xl md:text-4xl font-medium tracking-tight text-white">Take action anywhere</h3>
                <p className="text-lg text-neutral-400 leading-relaxed">
                  Trigger workflows directly from your team's conversations. Nexus integrates into your workflows, turning casual requests into automated background tasks.
                </p>
-             </div>
-             <div className="relative rounded-2xl border border-white/10 overflow-hidden bg-[#1A1D21] shadow-2xl flex justify-center w-full max-w-md mx-auto">
+             </TextReveal>
+             <motion.div 
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8 }}
+               className="relative rounded-2xl border border-white/10 overflow-hidden bg-[#1A1D21] shadow-2xl flex justify-center w-full max-w-md mx-auto"
+             >
                 <div className="w-full text-left flex flex-col">
                   {/* Header */}
                   <div className="h-12 border-b border-white/5 flex items-center px-4 gap-3 text-neutral-400 shrink-0">
@@ -396,23 +527,73 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-             </div>
+             </motion.div>
           </div>
         </section>
 
-        {/* Changelog Section (Using Changelog Image) */}
+        {/* Changelog Section (Custom Coded) */}
         <section id="changelog" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white">Shipping at the speed of thought</h2>
-          </div>
-          <div className="relative rounded-2xl border border-white/10 overflow-hidden bg-[#0A0A0A] p-2 max-w-5xl mx-auto">
-            <img src="/changelog.png" alt="Changelog" className="w-full rounded-xl opacity-90" />
-          </div>
+          <TextReveal className="mb-24">
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-24">Changelog</h2>
+            
+            <div className="relative">
+              {/* Horizontal Line */}
+              <div className="absolute top-[5px] left-0 right-0 h-[1px] bg-white/10 z-0 hidden md:block"></div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                {/* Item 1 */}
+                <div className="relative">
+                  <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
+                    <div className="w-1 h-1 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
+                  </div>
+                  <h4 className="text-white font-medium text-sm mb-3">Extension UI refresh</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Introducing a calmer, more consistent interface for the extension popup.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">MAR 11, 2026</span>
+                </div>
+
+                {/* Item 2 */}
+                <div className="relative">
+                  <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
+                    <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
+                  </div>
+                  <h4 className="text-white font-medium text-sm mb-3">Deeplink to local agents</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Starting a task used to mean manually assigning agents. Now it's automatic.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 26, 2026</span>
+                </div>
+
+                {/* Item 3 */}
+                <div className="relative">
+                  <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
+                    <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
+                  </div>
+                  <h4 className="text-white font-medium text-sm mb-3">Advanced DOM parsing</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Refine your workflow execution with advanced DOM tree filters and element tracking.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 12, 2026</span>
+                </div>
+
+                {/* Item 4 */}
+                <div className="relative">
+                  <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
+                    <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
+                  </div>
+                  <h4 className="text-white font-medium text-sm mb-3">Browser MCP integration</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">We've expanded Nexus's Context Protocol with support for local browser state and tabs.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 4, 2026</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-20">
+              <a href="#" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-2 group w-fit">
+                See all releases <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </TextReveal>
         </section>
 
         {/* CTA Footer */}
         <section className="py-24 px-4 text-center border-t border-white/5">
-          <div className="max-w-4xl mx-auto bg-white text-black rounded-3xl p-12 md:p-24 relative overflow-hidden shadow-[0_0_80px_rgba(255,255,255,0.1)]">
+          <TextReveal className="max-w-4xl mx-auto bg-white text-black rounded-3xl p-12 md:p-24 relative overflow-hidden shadow-[0_0_80px_rgba(255,255,255,0.1)]">
              <div className="relative z-10 space-y-8">
                <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Ready to reclaim your time?</h2>
                <p className="text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
@@ -424,7 +605,7 @@ export default function Home() {
                  </Button>
                </div>
              </div>
-          </div>
+          </TextReveal>
         </section>
 
         {/* Minimal Footer */}
