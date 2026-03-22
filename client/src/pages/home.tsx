@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { NexusNavBrand } from "@/components/NexusNavBrand";
 
 const TextReveal = ({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => (
   <motion.div
@@ -58,13 +59,12 @@ export default function Home() {
       <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
       
       {/* Navigation */}
-      <nav className="fixed w-full z-50 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5">
+      <nav className="fixed w-full z-50 border-b border-white/5 bg-[#0A0A0A]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-white/10">N</div>
-              <span className="font-bold text-xl tracking-tight text-white">Nexus</span>
-            </div>
+            <a href="/" className="flex items-center gap-2">
+              <NexusNavBrand />
+            </a>
             
             <div className="hidden md:flex items-center space-x-8">
               <a href="#how-it-works" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">How it works</a>
@@ -90,7 +90,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden bg-[#0A0A0A] border-b border-white/10"
+            className="md:hidden border-b border-white/10 bg-[#0A0A0A]"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
               <a href="#how-it-works" className="block py-2 text-base font-medium text-neutral-300" onClick={() => setIsMenuOpen(false)}>How it works</a>
@@ -114,7 +114,7 @@ export default function Home() {
             variants={stagger}
             className="max-w-5xl mx-auto space-y-8 relative z-10"
           >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[100px] -z-10" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(600px,100vw)] max-w-full h-[600px] bg-white/5 rounded-full blur-[100px] -z-10" />
             
             <motion.div variants={fadeIn} className="flex justify-center">
               <Badge variant="outline" className="px-4 py-1.5 rounded-full text-sm font-medium border-white/20 bg-white/5 backdrop-blur-sm text-neutral-300 hover:bg-white/10 transition-colors cursor-pointer group">
@@ -143,45 +143,53 @@ export default function Home() {
               <motion.div 
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-[#131314] ring-1 ring-white/5 mx-auto w-[400px] md:w-[450px] text-left"
+                className="relative w-full max-w-[min(450px,calc(100vw-2rem))] rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-[#131314] ring-1 ring-white/5 mx-auto text-left"
               >
                 {/* Simulated Browser Extension Popup Header */}
-                <div className="h-12 bg-[#1E1E1E] border-b border-white/5 flex items-center px-4 gap-3">
-                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-[12px] text-black font-bold">N</div>
-                  <span className="text-sm font-medium text-neutral-200">Nexus Agent</span>
+                <div className="h-12 bg-[#1E1E1E] border-b border-white/5 flex items-center px-4 gap-3 min-w-0">
+                  <NexusNavBrand variant="compact" className="min-w-0 shrink" />
+                  <span className="text-sm font-medium text-neutral-200 shrink-0">Agent</span>
                 </div>
                 
-                {/* Extension Body - Gemini Replica */}
-                <div className="p-6 h-[500px] flex flex-col">
-                  <div className="flex justify-between items-center mb-8 text-neutral-400">
-                    <div className="flex items-center gap-3">
-                      <Menu className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
-                      <span className="text-sm font-medium text-neutral-200">Nexus</span>
+                {/* Extension Body */}
+                <div className="flex max-h-[min(520px,78vh)] min-h-[400px] flex-col p-5 sm:p-6">
+                  <div className="mb-5 flex min-w-0 shrink-0 items-center justify-between gap-2 text-neutral-400">
+                    <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+                      <Menu className="h-5 w-5 shrink-0 cursor-pointer hover:text-white transition-colors" />
+                      <NexusNavBrand variant="compact" className="min-w-0" />
                     </div>
-                    <Clock className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+                    <Clock className="h-5 w-5 shrink-0 cursor-pointer hover:text-white transition-colors" />
                   </div>
 
-                  <div className="mb-8">
-                    <h2 className="text-4xl font-medium mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">Hello there!</h2>
-                    <h3 className="text-4xl font-medium text-neutral-500">How can I help you today?</h3>
+                  <div className="mb-4 shrink-0 space-y-2 text-left">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">What is Nexus?</p>
+                    <p className="text-sm leading-relaxed text-neutral-300">
+                      An AI that uses the internet <span className="text-white">for you</span> — instead of only telling you what to do, it searches, opens sites, clicks, fills forms, and compares options.
+                    </p>
                   </div>
 
-                  <div className="flex gap-4 mb-8 overflow-x-hidden flex-1">
-                    <div className="bg-[#1E1E1E] p-4 rounded-2xl flex-1 min-w-[150px] max-w-[160px] relative hover:bg-[#2A2A2A] transition-colors cursor-pointer group flex flex-col justify-between">
-                      <p className="text-sm text-neutral-300">Apply for a job at Stripe as a Frontend Engineer</p>
-                      <div className="w-8 h-8 mt-4 self-end rounded-full bg-[#131314] flex items-center justify-center text-neutral-400 group-hover:text-white transition-colors">
-                        <Wand2 className="w-4 h-4" />
+                  <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overflow-x-hidden pr-1 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.15)_transparent]">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <div className="bg-[#1E1E1E] p-3.5 rounded-2xl transition-colors hover:bg-[#2A2A2A] sm:min-h-0">
+                        <p className="text-xs leading-snug text-neutral-300 sm:text-sm">Apply for data analyst jobs — search, apply, repeat.</p>
+                        <div className="mt-3 flex justify-end">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#131314] text-neutral-400">
+                            <Wand2 className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-[#1E1E1E] p-3.5 rounded-2xl transition-colors hover:bg-[#2A2A2A] sm:min-h-0">
+                        <p className="text-xs leading-snug text-neutral-300 sm:text-sm">Order cheesecake from Baker&apos;s Pride — cart to checkout.</p>
+                        <div className="mt-3 flex justify-end">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#131314] text-neutral-400">
+                            <Wand2 className="h-4 w-4" />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="bg-[#1E1E1E] p-4 rounded-2xl flex-1 min-w-[150px] max-w-[160px] relative hover:bg-[#2A2A2A] transition-colors cursor-pointer group flex flex-col justify-between">
-                      <p className="text-sm text-neutral-300">Order a custom cake from Baker's Pride</p>
-                      <div className="w-8 h-8 mt-4 self-end rounded-full bg-[#131314] flex items-center justify-center text-neutral-400 group-hover:text-white transition-colors">
-                        <Wand2 className="w-4 h-4" />
-                      </div>
-                    </div>
                   </div>
 
-                  <div className={`rounded-3xl p-2 py-3 flex flex-col px-4 mt-auto transition-all duration-500 ${isProcessing ? 'bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-purple-500/20' : 'bg-[#1E1E1E] border border-transparent'}`}>
+                  <div className={`mt-4 shrink-0 rounded-3xl p-2 px-4 py-3 transition-all duration-500 ${isProcessing ? "border border-purple-500/20 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10" : "border border-transparent bg-[#1E1E1E]"}`}>
                     <div className="flex items-center">
                       <input 
                         type="text" 
@@ -253,9 +261,9 @@ export default function Home() {
                       )}
                     </AnimatePresence>
                   </div>
-                  <div className="text-center mt-4">
-                    <p className="text-[10px] text-neutral-500">Nexus may display inaccurate info, so double-check its responses.</p>
-                  </div>
+                  <p className="mt-3 shrink-0 text-center text-[10px] text-neutral-500">
+                    Nexus may display inaccurate info, so double-check its responses.
+                  </p>
                 </div>
               </motion.div>
             </motion.div>
@@ -263,14 +271,25 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Core Architecture Section (replacing species image with custom UI) */}
-        <section id="how-it-works" className="py-32 border-y border-white/5 relative overflow-hidden bg-[#0A0A0A]">
+        {/* Core Architecture Section */}
+        <section id="how-it-works" className="border-y border-white/5 bg-black py-32 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <TextReveal className="max-w-4xl mb-24">
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 text-white leading-tight">
-                A new species of browser extension. <span className="text-neutral-500">Purpose-built for modern teams with AI workflows at its core, Nexus sets a new standard for web automation.</span>
-              </h2>
-            </TextReveal>
+            <motion.div
+              className="mb-24 max-w-4xl"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25, margin: "0px 0px -12% 0px" }}
+              transition={{ duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
+            >
+              <p
+                className="text-left text-3xl font-bold leading-[1.28] tracking-[-0.02em] text-white md:text-[2.25rem] md:leading-[1.25] lg:text-[2.75rem] lg:leading-[1.22]"
+                style={{
+                  fontFamily: "'Inter Tight', Inter, system-ui, sans-serif",
+                }}
+              >
+                A new species of browser extension. Purpose-built for teams who want an AI that uses the web for you — Nexus searches, clicks, fills forms, and completes workflows instead of only telling you what to do.
+              </p>
+            </motion.div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <TextReveal delay={0.1}>
@@ -532,23 +551,23 @@ export default function Home() {
         </section>
 
         {/* Changelog Section (Custom Coded) */}
-        <section id="changelog" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <section id="changelog" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 overflow-x-hidden">
           <TextReveal className="mb-24">
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-24">Changelog</h2>
             
             <div className="relative">
               {/* Horizontal Line */}
-              <div className="absolute top-[5px] left-0 right-0 h-[1px] bg-white/10 z-0 hidden md:block"></div>
+              <div className="absolute top-[5px] left-0 right-0 h-px bg-white/10 z-0 hidden md:block"></div>
               
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-8 relative z-10">
                 {/* Item 1 */}
                 <div className="relative">
                   <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
                     <div className="w-1 h-1 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
                   </div>
-                  <h4 className="text-white font-medium text-sm mb-3">Extension UI refresh</h4>
-                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Introducing a calmer, more consistent interface for the extension popup.</p>
-                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">MAR 11, 2026</span>
+                  <h4 className="text-white font-medium text-sm mb-3">Jobs &amp; applications</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Nexus can search job boards, open listings, and drive applications — data analyst roles, frontend, and more — with fewer manual steps.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">MAR 15, 2026</span>
                 </div>
 
                 {/* Item 2 */}
@@ -556,9 +575,9 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
                     <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
                   </div>
-                  <h4 className="text-white font-medium text-sm mb-3">Deeplink to local agents</h4>
-                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Starting a task used to mean manually assigning agents. Now it's automatic.</p>
-                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 26, 2026</span>
+                  <h4 className="text-white font-medium text-sm mb-3">Shop, order &amp; compare</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">From ordering cheesecake to comparing laptops under a budget, Nexus navigates sites, carts, and checkout fields for you.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">MAR 2, 2026</span>
                 </div>
 
                 {/* Item 3 */}
@@ -566,9 +585,9 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
                     <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
                   </div>
-                  <h4 className="text-white font-medium text-sm mb-3">Advanced DOM parsing</h4>
-                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Refine your workflow execution with advanced DOM tree filters and element tracking.</p>
-                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 12, 2026</span>
+                  <h4 className="text-white font-medium text-sm mb-3">LinkedIn &amp; messaging</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Tell Nexus what to send — it opens LinkedIn (or your tab), drafts, and helps you post or message without copy-paste gymnastics.</p>
+                  <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 18, 2026</span>
                 </div>
 
                 {/* Item 4 */}
@@ -576,8 +595,8 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-[#111] border border-white/20 flex items-center justify-center mb-8 hidden md:flex">
                     <div className="w-1 h-1 rounded-full bg-neutral-600"></div>
                   </div>
-                  <h4 className="text-white font-medium text-sm mb-3">Browser MCP integration</h4>
-                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">We've expanded Nexus's Context Protocol with support for local browser state and tabs.</p>
+                  <h4 className="text-white font-medium text-sm mb-3">Local browser operator</h4>
+                  <p className="text-neutral-500 text-sm mb-6 pr-4 leading-relaxed">Nexus runs as an extension on your machine — it sees the DOM, uses your session, and acts as an AI assistant plus browser operator, not a chat-only bot.</p>
                   <span className="text-[10px] font-mono tracking-wider text-neutral-600 uppercase">FEB 4, 2026</span>
                 </div>
               </div>
@@ -612,9 +631,8 @@ export default function Home() {
         <footer className="bg-[#0A0A0A] border-t border-white/5 pt-16 pb-10 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             <div className="col-span-2 md:col-span-1 pr-8">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-6 h-6 bg-white rounded flex items-center justify-center text-black font-bold text-xs">N</div>
-                <span className="font-medium text-lg tracking-tight text-white">Nexus</span>
+              <div className="mb-6">
+                <NexusNavBrand variant="footer" />
               </div>
               <p className="text-sm text-neutral-500 max-w-xs leading-relaxed mb-6">
                 The autonomous AI browser extension.
